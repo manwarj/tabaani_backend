@@ -1,0 +1,61 @@
+const User = require("../../models/User");
+const verifyEmail = require("../../config/verifyEmail");
+module.exports = async (req, res) => {
+  try {
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      phone,
+      address,
+      date_of_birth,
+      role,
+    } = req.body;
+    const user = await User.findOne({ email });
+    if (user) {
+      return res.status(409).json({
+        status: false,
+        error: { email: { message: "This email is already in use" } },
+      });
+    }
+    const userCheckPhone = await User.findOne({ phone });
+    if (userCheckPhone) {
+      return res.status(409).json({
+        status: false,
+        error: { phone: { message: "This phone is already in use" } },
+      });
+    }
+    if (role !== "admin" && !address) {
+      return res.status(400).json({
+        status: false,
+        error: { address: { message: "Address is a required field" } },
+      });
+    }
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password,
+      phone,
+      address,
+      role,
+      date_of_birth,
+    });
+    const createdUser = await newUser.save();
+
+    // verifyEmail(email, firstName, createdUser._id, req.get("origin"));
+    res.status(201).json({
+      status: true,
+      message: "User was created successfully",
+      data: {
+        id: createdUser._id,
+      },
+    });
+  } catch (error) {
+    // if (error) {
+    // }
+    console.log(error);
+    res.status(401).json({ status: false, error: error.errors });
+  }
+};
