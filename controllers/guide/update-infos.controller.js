@@ -1,18 +1,20 @@
+const Guide = require("../../models/Guide");
 const User = require("../../models/User");
 
 module.exports = async (req, res) => {
   try {
-    let { id } = req.user;
-    const { firstName, lastName, phone, address, date_of_birth } = req.body;
-    const data = await User.findByIdAndUpdate(
-      id,
+    let { guideId } = req.user;
+    const { bio, languages, availability, price, location } = req.body;
+    // console.log({ languages });
+    const data = await Guide.findByIdAndUpdate(
+      guideId,
       {
         $set: {
-          firstName,
-          lastName,
-          phone,
-          address,
-          date_of_birth,
+          bio,
+          languages,
+          availability,
+          price,
+          location,
         },
       },
       { returnDocument: "after", runValidators: true },

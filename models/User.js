@@ -15,6 +15,11 @@ const userSchema = new Schema(
       minLength: [2, "Last Name length must have at least 3 characters"],
       required: [true, "Last Name is a required field"],
     },
+    guideId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "guides",
+      default: null,
+    },
     email: {
       type: String,
       index: true,
@@ -75,6 +80,7 @@ const userSchema = new Schema(
       enum: ["tourist", "guide", "admin"],
       required: [true, "Role is a required field"],
     },
+
     isVerified: {
       type: Boolean,
       default: false,

@@ -6,7 +6,7 @@ module.exports = async (req, res) => {
     const user = await User.findById(id, {
       password: 0,
       imgPublicId: 0,
-    });
+    }).populate("guideId");
     res.status(200).json({ status: true, data: user });
   } catch (error) {
     // console.log(error);

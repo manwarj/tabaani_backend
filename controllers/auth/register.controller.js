@@ -1,4 +1,5 @@
 const User = require("../../models/User");
+const Guide = require("../../models/Guide");
 const verifyEmail = require("../../config/verifyEmail");
 module.exports = async (req, res) => {
   try {
@@ -43,7 +44,15 @@ module.exports = async (req, res) => {
       date_of_birth,
     });
     const createdUser = await newUser.save();
+    if (role === "guide") {
+      const guideProfile = new Guide({});
+      const createdProfile = await guideProfile.save();
 
+      // link it back to the user
+      await User.findByIdAndUpdate(createdUser._id, {
+        $set: { guideId: createdProfile._id },
+      });
+    }
     // verifyEmail(email, firstName, createdUser._id, req.get("origin"));
     res.status(201).json({
       status: true,

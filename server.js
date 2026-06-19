@@ -3,6 +3,7 @@ const express = require("express");
 const connect = require("./config/connect");
 const authRoute = require("./routes/auth.route");
 const userRoute = require("./routes/user.route");
+const guideRoute = require("./routes/guide.route");
 const app = express();
 // middlewares
 app.use(express.json());
@@ -12,6 +13,7 @@ connect(process.env.URI);
 // routes
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
+app.use("/api/guide", guideRoute);
 // listenning
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
