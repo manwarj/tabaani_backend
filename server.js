@@ -8,8 +8,26 @@ const guideRoute = require("./routes/guide.route");
 const touristRoute = require("./routes/tourist.route");
 const app = express();
 require("./config/cron");
+// const corsOptions = {
+//   origin: process.env.CLIENT_URL, // only allow your frontend
+//   methods: ["GET", "POST", "PUT", "DELETE"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// };
 const corsOptions = {
-  origin: process.env.CLIENT_URL, // only allow your frontend
+  origin: (origin, callback) => {
+    const allowedOrigins = [process.env.CLIENT_URL];
+
+    // allow any lovable.app subdomain
+    if (
+      !origin ||
+      allowedOrigins.includes(origin) ||
+      origin.endsWith(".lovable.app")
+    ) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
