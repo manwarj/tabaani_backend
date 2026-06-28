@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
 
 const Schema = mongoose.Schema;
 
 const guideSchema = new Schema(
   {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+      required: true,
+    },
     bio: {
       type: String,
     },
@@ -32,6 +36,10 @@ const guideSchema = new Schema(
     rating: {
       type: Number,
       default: 0,
+    },
+    isApprouved: {
+      type: Boolean,
+      default: false,
     },
   },
   {
