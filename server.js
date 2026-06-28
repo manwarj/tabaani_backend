@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const connect = require("./config/connect");
 const authRoute = require("./routes/auth.route");
 const userRoute = require("./routes/user.route");
@@ -7,6 +8,12 @@ const guideRoute = require("./routes/guide.route");
 const touristRoute = require("./routes/tourist.route");
 const app = express();
 require("./config/cron");
+const corsOptions = {
+  origin: process.env.CLIENT_URL, // only allow your frontend
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+app.use(cors(corsOptions));
 // middlewares
 app.use(express.json());
 // db connection

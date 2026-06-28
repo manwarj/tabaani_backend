@@ -9,12 +9,12 @@ route.put(
   require("../controllers/guide/update-infos.controller"),
 );
 route.put(
-  "/booking/:bookingId",
+  "/bookings/:bookingId",
   verifyToken,
   require("../controllers/guide/update-booking.controller"),
 );
 route.put(
-  "/booking/:bookingId/cancel",
+  "/bookings/:bookingId/cancel",
   verifyToken,
   verifyRole("guide"),
   require("../controllers/guide/cancel-booking.controller"),

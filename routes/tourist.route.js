@@ -4,7 +4,7 @@ const verifyToken = require("../middlewares/verifyToken.controller");
 const verifyRole = require("../middlewares/verifyRole.controller");
 
 route.post(
-  "/book-guide/:gId",
+  "/bookings/:gId",
   verifyToken,
   require("../controllers/tourist/book-guide.controller"),
 );
