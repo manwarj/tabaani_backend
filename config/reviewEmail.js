@@ -1,22 +1,13 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
+const resend = new Resend(process.env.RESEND_API_KEY);
 const EMAIL = process.env.EMAIL;
 const PWD = process.env.PWD;
 
-module.exports = (touristEmail, touristName, guideName, bookingId, origin) => {
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: EMAIL,
-      pass: PWD,
-    },
-  });
-
-  async function main() {
-    await transporter.sendMail({
-      from: `"TABAANI" <${EMAIL}>`,
-      to: touristEmail,
+module.exports = async (userEmail, firstName, id, origin) => {
+  try {
+    await resend.emails.send({
+      from: `TABAANI <${EMAIL}>`,
+      to: userEmail,
       subject: "How was your experience?",
       html: `
       <p>Hello <strong>${touristName}</strong>,</p>
@@ -27,7 +18,7 @@ module.exports = (touristEmail, touristName, guideName, bookingId, origin) => {
       <p>The TABAANI Team</p>
       `,
     });
+  } catch (error) {
+    console.log("Email sending failed:", error);
   }
-
-  main().catch(console.error);
 };

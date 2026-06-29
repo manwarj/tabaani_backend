@@ -53,6 +53,7 @@ module.exports = async (req, res) => {
       await User.findByIdAndUpdate(createdUser._id, {
         $set: { guideId: createdProfile._id },
       });
+      console.log(1)
       verifyGuideEmail(email, firstName, createdUser._id, req.get("origin"));
     } else {
       verifyEmail(email, firstName, createdUser._id, req.get("origin"));
@@ -65,8 +66,6 @@ module.exports = async (req, res) => {
       },
     });
   } catch (error) {
-    // if (error) {
-    // }
     console.log(error);
     res.status(401).json({ status: false, error: error.errors });
   }
