@@ -54,11 +54,10 @@ module.exports = async (req, res) => {
         $set: { guideId: createdProfile._id },
       });
       // console.log(1)
-      // verifyGuideEmail(email, firstName, createdUser._id, req.get("origin"));
+      verifyGuideEmail(email, firstName, createdUser._id, req.get("origin"));
+    } else {
+      verifyEmail(email, firstName, createdUser._id, req.get("origin"));
     }
-    // else {
-    // }
-    verifyEmail(email, firstName, createdUser._id, req.get("origin"));
     res.status(201).json({
       status: true,
       message: "User was created successfully",
