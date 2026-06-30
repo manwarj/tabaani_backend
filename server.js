@@ -15,7 +15,11 @@ require("./config/cron");
 // };
 const corsOptions = {
   origin: (origin, callback) => {
-    const allowedOrigins = [process.env.CLIENT_URL];
+    const allowedOrigins = [
+      "https://tabaani.nl",
+      "https://www.tabaani.nl",
+      process.env.CLIENT_URL,
+    ];
 
     // allow any lovable.app subdomain
     if (
