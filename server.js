@@ -8,35 +8,32 @@ const guideRoute = require("./routes/guide.route");
 const touristRoute = require("./routes/tourist.route");
 const app = express();
 require("./config/cron");
+
 // const corsOptions = {
-//   origin: process.env.CLIENT_URL, // only allow your frontend
+//   origin: (origin, callback) => {
+//     const allowedOrigins = [
+//       "https://tabaani.nl",
+//       "https://id-preview--0f0167ac-0a28-46f3-8b16-840c509e0d13.lovable.app",
+//       "https://www.tabaani.nl",
+//       "https://*.lovable.app",
+//       process.env.CLIENT_URL,
+//     ];
+
+   
+//     if (
+//       !origin ||
+//       allowedOrigins.includes(origin) ||
+//       origin.endsWith(".lovable.app")
+//     ) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
 //   methods: ["GET", "POST", "PUT", "DELETE"],
 //   allowedHeaders: ["Content-Type", "Authorization"],
 // };
-const corsOptions = {
-  origin: (origin, callback) => {
-    const allowedOrigins = [
-      "https://tabaani.nl",
-      "https://www.tabaani.nl",
-      "https://*.lovable.app",
-      process.env.CLIENT_URL,
-    ];
-
-    // allow any lovable.app subdomain
-    if (
-      !origin ||
-      allowedOrigins.includes(origin) ||
-      origin.endsWith(".lovable.app")
-    ) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 // middlewares
 app.use(express.json());
 // db connection
