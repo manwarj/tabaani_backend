@@ -47,7 +47,7 @@ app.use("/api/user", userRoute);
 app.use("/api/guide", guideRoute);
 app.use("/api/tourist", touristRoute);
 // listenning
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`server is app und running on ${port} ✅`);
 });

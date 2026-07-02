@@ -4,7 +4,8 @@
   "description": "backend resources for the tabaani project",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "start":"node server.js"
   },
   "author": "mohamed anouar jabri",
   "license": "ISC",
