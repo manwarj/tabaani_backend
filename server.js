@@ -18,6 +18,7 @@ const corsOptions = {
     const allowedOrigins = [
       "https://tabaani.nl",
       "https://www.tabaani.nl",
+      "https://*.lovable.app",
       process.env.CLIENT_URL,
     ];
 
@@ -47,7 +48,7 @@ app.use("/api/user", userRoute);
 app.use("/api/guide", guideRoute);
 app.use("/api/tourist", touristRoute);
 // listenning
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`server is app und running on ${port} ✅`);
 });
