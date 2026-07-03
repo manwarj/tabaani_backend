@@ -80,7 +80,7 @@ module.exports = async (userEmail, firstName, id, origin) => {
               <!-- Fallback link -->
               <p style="margin:0 0 32px 0; color:#9ca3af; font-size:13px; text-align:center; line-height:1.6;">
                 If the button does not work, copy and paste this link in your browser:<br>
-                <a href="${origin}/verify-email/${id}" style="color:#3b82f6; word-break:break-all;">
+                <a href="${origin}/verify-account/${id}" style="color:#3b82f6; word-break:break-all;">
                   ${origin}/verify-email/${id}
                 </a>
               </p>
