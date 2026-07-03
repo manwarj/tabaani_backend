@@ -1,7 +1,6 @@
 const { Resend } = require("resend");
 const resend = new Resend(process.env.RESEND_API_KEY);
 const EMAIL = process.env.EMAIL;
-const PWD = process.env.PWD;
 
 module.exports = async (userEmail, firstName, lastName, origin) => {
   try {

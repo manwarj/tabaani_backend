@@ -93,7 +93,7 @@ module.exports = async (userEmail, firstName, id, origin) => {
                       Step 2 — Submit Your Documents
                     </p>
                     <p style="margin:0 0 16px 0; color:#374151; font-size:14px; line-height:1.6;">
-                      To complete your guide account activation, please send the following documents to:
+                      To complete your guide account verification, please send the following documents to:
                       <a href="mailto:${EMAIL}" style="color:#3b82f6; font-weight:700;">${EMAIL}</a>
                     </p>
 
@@ -129,7 +129,7 @@ module.exports = async (userEmail, firstName, id, origin) => {
                 <tr>
                   <td style="background:#fefce8; border-left:4px solid #facc15; border-radius:8px; padding:16px 24px;">
                     <p style="margin:0; color:#713f12; font-size:14px; line-height:1.6;">
-                      ⏳ <strong>Please Note:</strong> Your account will be fully activated once your documents are reviewed and approved by our team. This usually takes 1-3 business days.
+                      ⏳ <strong>Please Note:</strong> Your account will be fully verified once your documents are reviewed and approved by our team. This usually takes 1-3 business days.
                     </p>
                   </td>
                 </tr>
