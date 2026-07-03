@@ -11,7 +11,7 @@ route.get(
   require("../controllers/auth/verifyAccount.controller"),
 );
 // forget password
-route.get("/forgot-pwd", require("../controllers/auth/forgot-pwd.controller"));
+route.post("/forgot-pwd", require("../controllers/auth/forgot-pwd.controller"));
 // resett password
 route.post(
   "/reset-pwd",
