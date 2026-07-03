@@ -151,9 +151,9 @@ module.exports = async (userEmail, firstName, id, origin) => {
               <p style="margin:0 0 8px 0; color:#6b7280; font-size:13px;">
                 If you did not create a TABAANI guide account, you can safely ignore this email.
               </p>
-              <p style="margin:0; color:#9ca3af; font-size:12px;">
-                © 2026 TABAANI · All rights reserved
-              </p>
+             <p style="margin:0; color:#9ca3af; font-size:12px;">
+  © ${new Date().getFullYear()} TABAANI · All rights reserved
+</p>
               <p style="margin:8px 0 0 0;">
                 <a href="${origin}" style="color:#3b82f6; font-size:12px; text-decoration:none;">www.tabaani.nl</a>
               </p>

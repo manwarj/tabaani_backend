@@ -1,4 +1,5 @@
 const User = require("../../models/User");
+const updatedPassword = require("../../config/updatedPassword");
 module.exports = async (req, res) => {
   try {
     const { newPwd } = req.body;
@@ -13,6 +14,12 @@ module.exports = async (req, res) => {
 
     user.password = newPwd;
     await user.save();
+    updatedPassword(
+      user.email,
+      user.firstName,
+      user.lasttName,
+      req.get("origin"),
+    );
     return res.status(200).json({
       status: true,
       message: "Your password was updated successfully",
