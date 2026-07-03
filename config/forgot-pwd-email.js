@@ -1,9 +1,8 @@
 const { Resend } = require("resend");
 const resend = new Resend(process.env.RESEND_API_KEY);
 const EMAIL = process.env.EMAIL;
-const PWD = process.env.PWD;
 
-module.exports = async (userEmail, firstName, id, origin) => {
+module.exports = async (userEmail, firstName, id, origin, resetToken) => {
   try {
     await resend.emails.send({
       from: `TABAANI <${EMAIL}>`,
