@@ -20,8 +20,13 @@ module.exports = async (req, res) => {
         expiresIn: "30m",
       },
     );
-    const origin = req.get("origin") || "http://localhost:3000";
-    forgotEmail(user.email, user.firstName, user._id, resetToken, origin);
+    forgotEmail(
+      user.email,
+      user.firstName,
+      user._id,
+      resetToken,
+      req.get("origin"),
+    );
     res
       .status(200)
       .json({ status: true, message: "Reset link sent to your email" });
