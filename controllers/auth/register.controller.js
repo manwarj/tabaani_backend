@@ -34,6 +34,31 @@ module.exports = async (req, res) => {
         error: { address: { message: "Address is a required field" } },
       });
     }
+    const birthDate = new Date(date_of_birth);
+    const today = new Date();
+   const today = new Date();
+   let age = today.getFullYear() - birthDate.getFullYear();
+
+   const monthDifference = today.getMonth() - birthDate.getMonth();
+
+   if (
+     monthDifference < 0 ||
+     (monthDifference === 0 && today.getDate() < birthDate.getDate())
+   ) {
+     age--;
+   }
+
+   // Check if the user is at least 18
+   if (age < 18) {
+     return res.status(400).json({
+       status: false,
+       error: {
+         date_of_birth: {
+           message: "You must be at least 18 years old to register.",
+         },
+       },
+     });
+   }
     const newUser = new User({
       firstName,
       lastName,
