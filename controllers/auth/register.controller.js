@@ -36,7 +36,6 @@ module.exports = async (req, res) => {
     }
     const birthDate = new Date(date_of_birth);
     const today = new Date();
-   const today = new Date();
    let age = today.getFullYear() - birthDate.getFullYear();
 
    const monthDifference = today.getMonth() - birthDate.getMonth();

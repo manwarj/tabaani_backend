@@ -81,7 +81,7 @@ module.exports = async (userEmail, firstName, id, origin) => {
               <p style="margin:0 0 32px 0; color:#9ca3af; font-size:13px; text-align:center; line-height:1.6;">
                 If the button does not work, copy and paste this link in your browser:<br>
                 <a href="${origin}/verify-account/${id}" style="color:#3b82f6; word-break:break-all;">
-                  ${origin}/verify-email/${id}
+                  ${origin}/verify-account/${id}
                 </a>
               </p>
 
@@ -94,7 +94,7 @@ module.exports = async (userEmail, firstName, id, origin) => {
                     </p>
                     <p style="margin:0 0 16px 0; color:#374151; font-size:14px; line-height:1.6;">
                       To complete your guide account verification, please send the following documents to:
-                      <a href="mailto:${EMAIL}" style="color:#3b82f6; font-weight:700;">${EMAIL}</a>
+                      <a href="mailto:startuprentit@gmail.com" style="color:#3b82f6; font-weight:700;">startuprentit@gmail.com</a>
                     </p>
 
                     <!-- Documents list -->
