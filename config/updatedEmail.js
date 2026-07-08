@@ -55,7 +55,7 @@ module.exports = async (userEmail, firstName, id, origin) => {
               <table cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:32px;">
                 <tr>
                   <td align="center">
-                    <a href="${origin}/verify-email/${id}" target="_blank"
+                    <a href="${origin}/verify-account/${id}" target="_blank"
                       style="display:inline-block;
                              background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
                              color:#ffffff;
@@ -76,7 +76,7 @@ module.exports = async (userEmail, firstName, id, origin) => {
               <p style="margin:0 0 32px 0; color:#9ca3af; font-size:13px; text-align:center; line-height:1.6;">
                 If the button does not work, copy and paste this link in your browser:<br>
                 <a href="${origin}/verify-account/${id}" style="color:#3b82f6; word-break:break-all;">
-                  ${origin}/verify-email/${id}
+                  ${origin}/verify-account/${id}
                 </a>
               </p>
 

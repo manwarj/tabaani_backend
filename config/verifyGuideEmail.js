@@ -60,7 +60,7 @@ module.exports = async (userEmail, firstName, id, origin) => {
               <table cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:32px;">
                 <tr>
                   <td align="center">
-                    <a href="${origin}/verify-email/${id}" target="_blank"
+                    <a href="${origin}/verify-account/${id}" target="_blank"
                       style="display:inline-block;
                              background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
                              color:#ffffff;
