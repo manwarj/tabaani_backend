@@ -14,6 +14,7 @@ const corsOptions = {
     const allowedOrigins = [
       "https://tabaani.nl",
       "https://id-preview--0f0167ac-0a28-46f3-8b16-840c509e0d13.lovable.app",
+      " https://0f0167ac-0a28-46f3-8b16-840c509e0d13.lovableproject.com",
       "https://www.tabaani.nl",
 
       process.env.CLIENT_URL,
