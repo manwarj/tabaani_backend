@@ -19,16 +19,22 @@ cron.schedule("0 0 * * *", async () => {
   const bookings = await Booking.find({
     status: "completed",
     endDate: { $lt: new Date() },
-    reviewEmailSent: false, // ← we will add this field to Booking model
+    reviewEmailSent: false,
   })
     .populate("tourist")
-    .populate("guide");
+    .populate({
+      path: "guide",
+      populate: {
+        path: "userId",
+        select:'-password'
+      }
+    });
 
   for (const booking of bookings) {
     reviewEmail(
       booking.tourist.email,
       booking.tourist.firstName,
-      booking.guide.firstName,
+      booking.guide.userId.firstName,
       booking._id,
       origin,
     );

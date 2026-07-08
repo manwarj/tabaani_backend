@@ -47,6 +47,6 @@ route.get(
   "/reviews/:guideId",
   require("../controllers/user/get-reviews.controller"),
 );
-app.post("/contact", require("./controllers/user/contact.controller"));
+route.post("/contact", require("../controllers/user/contact.controller"));
 
 module.exports = route;
