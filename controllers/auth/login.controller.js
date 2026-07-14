@@ -31,6 +31,12 @@ module.exports = async (req, res) => {
         error: "Your account has been suspended, please contact support.",
       });
     }
+    if (checkUser.isDeleted) {
+      return res.status(406).json({
+        status: false,
+        error: "Your account has been deleted, please contact support.",
+      });
+    }
     //   token
     const token = jwt.sign(
       {

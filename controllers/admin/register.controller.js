@@ -1,7 +1,4 @@
-const User = require("../../models/User");
-const Guide = require("../../models/Guide");
-const verifyEmail = require("../../config/verifyEmail");
-const verifyGuideEmail = require("../../config/verifyGuideEmail");
+const Admin = require("../../controllers/admin");
 module.exports = async (req, res) => {
   try {
     const {
@@ -14,21 +11,21 @@ module.exports = async (req, res) => {
       date_of_birth,
       role,
     } = req.body;
-    const user = await User.findOne({ email });
-    if (user) {
+    const admin = await Admin.findOne({ email });
+    if (admin) {
       return res.status(409).json({
         status: false,
         error: { email: { message: "This email is already in use" } },
       });
     }
-    const userCheckPhone = await User.findOne({ phone });
-    if (userCheckPhone) {
+    const adminCheckPhone = await Admin.findOne({ phone });
+    if (adminCheckPhone) {
       return res.status(409).json({
         status: false,
         error: { phone: { message: "This phone is already in use" } },
       });
     }
-    if (role !== "admin" && !address) {
+    if (!address) {
       return res.status(400).json({
         status: false,
         error: { address: { message: "Address is a required field" } },
@@ -57,7 +54,7 @@ module.exports = async (req, res) => {
         },
       });
     }
-    const newUser = new User({
+    const newAdmin = new User({
       firstName,
       lastName,
       email,
@@ -67,25 +64,13 @@ module.exports = async (req, res) => {
       role,
       date_of_birth,
     });
-    const createdUser = await newUser.save();
-    if (role === "guide") {
-      const guideProfile = new Guide({ userId: createdUser._id });
-      const createdProfile = await guideProfile.save();
+    const createdAdmin = await newAdmin.save();
 
-      // link it back to the user
-      await User.findByIdAndUpdate(createdUser._id, {
-        $set: { guideId: createdProfile._id },
-      });
-      // console.log(1)
-      verifyGuideEmail(email, firstName, createdUser._id, req.get("origin"));
-    } else {
-      verifyEmail(email, firstName, createdUser._id, req.get("origin"));
-    }
     res.status(201).json({
       status: true,
       message: "User was created successfully",
       data: {
-        id: createdUser._id,
+        id: createdAdmin._id,
       },
     });
   } catch (error) {

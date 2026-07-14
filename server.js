@@ -6,6 +6,7 @@ const authRoute = require("./routes/auth.route");
 const userRoute = require("./routes/user.route");
 const guideRoute = require("./routes/guide.route");
 const touristRoute = require("./routes/tourist.route");
+const adminRoute = require("./routes/admin.route");
 const app = express();
 require("./config/cron");
 
@@ -46,6 +47,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/guide", guideRoute);
 app.use("/api/tourist", touristRoute);
+app.use("/api/admin", adminRoute);
 // listenning
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

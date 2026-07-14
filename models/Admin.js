@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema(
+const adminSchema = new Schema(
   {
     firstName: {
       type: String,
@@ -14,11 +14,6 @@ const userSchema = new Schema(
       type: String,
       minLength: [2, "Last Name length must have at least 3 characters"],
       required: [true, "Last Name is a required field"],
-    },
-    guideId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "guides",
-      default: null,
     },
     email: {
       type: String,
@@ -47,15 +42,6 @@ const userSchema = new Schema(
       index: true,
       required: [true, "Phone is a required field"],
     },
-    img: {
-      type: String,
-      default:
-        "https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png",
-    },
-    imgPublicId: {
-      type: String,
-      default: null,
-    },
     address: {
       type: {
         house_nbr: {
@@ -77,10 +63,9 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ["tourist", "guide", "admin"],
+      enum: ["admin", "sub-admin", "cordinator"],
       required: [true, "Role is a required field"],
     },
-
     isVerified: {
       type: Boolean,
       default: false,
@@ -98,9 +83,9 @@ const userSchema = new Schema(
     timestamps: true,
   },
 );
-userSchema.pre("save", async function () {
+adminSchema.pre("save", async function () {
   if (!this.isModified("password")) return;
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
 });
-module.exports = User = mongoose.model("users", userSchema);
+module.exports = Admin = mongoose.model("admins", adminSchema);

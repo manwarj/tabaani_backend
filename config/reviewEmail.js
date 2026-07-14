@@ -2,7 +2,13 @@ const { Resend } = require("resend");
 const resend = new Resend(process.env.RESEND_API_KEY);
 const EMAIL = process.env.EMAIL;
 
-module.exports = async (userEmail, firstName, guideFirstName, id, origin) => {
+module.exports = async (
+  userEmail,
+  firstName,
+  guideFirstName,
+  bookingId,
+  origin,
+) => {
   try {
     await resend.emails.send({
       from: `TABAANI <${EMAIL}>`,
@@ -35,8 +41,8 @@ module.exports = async (userEmail, firstName, guideFirstName, id, origin) => {
             <td style="padding: 48px 40px 32px 40px;">
               <h2 style="margin:0 0 8px 0; color:#1d4ed8; font-size:24px;">How was your trip? 🌍</h2>
               <p style="margin:0 0 24px 0; color:#374151; font-size:16px; line-height:1.6;">
-                Hello <strong>${touristName}</strong>, we hope you had an amazing experience with 
-                <strong style="color:#1d4ed8;">${guideName}</strong>!
+                Hello <strong>${firstName}</strong>, we hope you had an amazing experience with 
+                <strong style="color:#1d4ed8;">${guideFirstName}</strong>!
               </p>
 
               <!-- Info box -->
