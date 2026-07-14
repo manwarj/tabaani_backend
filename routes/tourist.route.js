@@ -21,7 +21,7 @@ route.get(
   require("../controllers/tourist/get-bookings.controller"),
 );
 route.post(
-  "/review/:bookingId",
+  "/reviews/:bookingId",
   verifyToken,
   verifyRole("tourist"),
   require("../controllers/tourist/create-review.controller"),
