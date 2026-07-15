@@ -4,7 +4,7 @@ const EMAIL = process.env.EMAIL;
 module.exports = async (name, email, subject, message) => {
   try {
     await resend.emails.send({
-      from: `TABAANI ${EMAIL}>`,
+      from: `TABAANI <${EMAIL}>`,
       to: "startuprentit@gmail.com",
       reply_to: email,
       subject: `[TABAANI Contact] ${subject}`,
