@@ -18,6 +18,9 @@ const guideSchema = new Schema(
     price: {
       type: Number,
     },
+    currency: {
+      type: String,
+    },
     location: {
       city: { type: String },
       country: { type: String },

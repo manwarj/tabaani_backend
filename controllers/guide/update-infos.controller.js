@@ -4,7 +4,8 @@ const User = require("../../models/User");
 module.exports = async (req, res) => {
   try {
     let { guideId } = req.user;
-    const { bio, languages, availability, price, location } = req.body;
+    const { bio, languages, availability, price, currency, location } =
+      req.body;
     // console.log({ languages });
     const data = await Guide.findByIdAndUpdate(
       guideId,
@@ -15,6 +16,7 @@ module.exports = async (req, res) => {
           availability,
           price,
           location,
+          currency,
         },
       },
       { returnDocument: "after", runValidators: true },

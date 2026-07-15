@@ -13,6 +13,7 @@ module.exports = async (req, res) => {
       address,
       date_of_birth,
       role,
+      isAgreedToTerms,
     } = req.body;
     const user = await User.findOne({ email });
     if (user) {
@@ -32,6 +33,16 @@ module.exports = async (req, res) => {
       return res.status(400).json({
         status: false,
         error: { address: { message: "Address is a required field" } },
+      });
+    }
+    if (!isAgreedToTerms) {
+      return res.status(400).json({
+        status: false,
+        error: {
+          isAgreedToTerms: {
+            message: "You must agree to the terms and conditions",
+          },
+        },
       });
     }
     const birthDate = new Date(date_of_birth);
@@ -66,6 +77,7 @@ module.exports = async (req, res) => {
       address,
       role,
       date_of_birth,
+      isAgreedToTerms,
     });
     const createdUser = await newUser.save();
     if (role === "guide") {

@@ -80,7 +80,11 @@ const userSchema = new Schema(
       enum: ["tourist", "guide", "admin"],
       required: [true, "Role is a required field"],
     },
-
+    isAgreedToTerms: {
+      type: Boolean,
+      required: [true, "You must agree to the terms and conditions"],
+      default: false,
+    },
     isVerified: {
       type: Boolean,
       default: false,

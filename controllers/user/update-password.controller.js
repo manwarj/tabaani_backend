@@ -1,6 +1,6 @@
 const User = require("../../models/User");
 const bcrypt = require("bcrypt");
-const updatedPassword = require("../../config/updatedPassword")
+const updatedPassword = require("../../config/updatedPassword");
 module.exports = async (req, res) => {
   try {
     const { id } = req.user;
@@ -17,7 +17,13 @@ module.exports = async (req, res) => {
 
     user.password = newPassword;
     await user.save(); // triggers pre-save hook to hash it
-    updatedPassword(user.email, user.firstName, id, req.get("origin"));
+    updatedPassword(
+      user.email,
+      user.firstName,
+      user.lastName,
+      id,
+      req.get("origin"),
+    );
     res
       .status(200)
       .json({ status: true, message: "Password updated successfully" });

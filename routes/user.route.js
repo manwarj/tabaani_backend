@@ -1,6 +1,7 @@
 const express = require("express");
 const route = express.Router();
 const verifyToken = require("../middlewares/verifyToken.controller");
+const verifyRestoreAccountRestore = require("../middlewares/verifyRestoreAccountToken.controller");
 const multer = require("../middlewares/multer");
 
 // get profile
@@ -35,18 +36,25 @@ route.put(
   verifyToken,
   require("../controllers/user/update-password.controller"),
 );
-route.get(
-  "/guides",
-  require("../controllers/user/get-guides.controller"),
-);
-route.get(
-  "/guide/:id",
-  require("../controllers/user/get-guide.controller"),
-);
+route.get("/guides", require("../controllers/user/get-guides.controller"));
+route.get("/guide/:id", require("../controllers/user/get-guide.controller"));
 route.get(
   "/reviews/:guideId",
   require("../controllers/user/get-reviews.controller"),
 );
 route.post("/contact", require("../controllers/user/contact.controller"));
+route.delete(
+  "/delete",
+  require("../controllers/user/delete-account.controller"),
+);
+route.post(
+  "/restore-account-request",
+  require("../controllers/user/restore-account-request.controller"),
+);
+route.put(
+  "/restore-account",
+  verifyRestoreAccountRestore,
+  require("../controllers/user/restore-account.controller"),
+);
 
 module.exports = route;

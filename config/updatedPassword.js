@@ -2,7 +2,7 @@ const { Resend } = require("resend");
 const resend = new Resend(process.env.RESEND_API_KEY);
 const EMAIL = process.env.EMAIL;
 
-module.exports = async (userEmail, firstName, lastName, origin) => {
+module.exports = async (userEmail, firstName, lastName, id, origin) => {
   try {
     await resend.emails.send({
       from: `TABAANI <${EMAIL}>`,
@@ -35,7 +35,7 @@ module.exports = async (userEmail, firstName, lastName, origin) => {
             <td style="padding: 48px 40px 32px 40px;">
               <h2 style="margin:0 0 8px 0; color:#1d4ed8; font-size:24px;">Password Changed Successfully 🔒</h2>
               <p style="margin:0 0 24px 0; color:#374151; font-size:16px; line-height:1.6;">
-                Hello <strong>${firstName} ${lastName} </strong>, this is a confirmation that your TABAANI account 
+                Hello <strong>${firstName} ${lastName} </strong>.<br/> ID: ${id} <br/> , this is a confirmation that your TABBAANI account 
                 password was successfully changed.
               </p>
 
@@ -80,7 +80,7 @@ module.exports = async (userEmail, firstName, lastName, origin) => {
                 Stay safe and enjoy your journey with TABAANI!
               </p>
               <p style="margin:0; color:#9ca3af; font-size:12px;">
-                © ${new Date().getFullYear()} TABAANI · All rights reserved
+                © ${new Date().getFullYear()} TABBAANI · All rights reserved
               </p>
               <p style="margin:8px 0 0 0;">
                 <a href="${origin}" style="color:#3b82f6; font-size:12px; text-decoration:none;">www.tabaani.nl</a>
