@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
       message: "Your message was sent successfully",
     });
   } catch (error) {
-    
+    console.log(error)
     res.status(500).json({ status: false, error: error.message });
   }
 };
